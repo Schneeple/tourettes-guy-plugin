@@ -7,9 +7,9 @@ import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
 import net.runelite.client.config.Range;
 
-@ConfigGroup(CEngineerCompletedConfig.GROUP)
-public interface CEngineerCompletedConfig extends Config {
-    String GROUP = "cengineercompleted";
+@ConfigGroup(TourettesGuyCompletedConfig.GROUP)
+public interface TourettesGuyCompletedConfig extends Config {
+    String GROUP = "tourettesguycompleted";
     String LEAGUES_TASK_HIDDEN_REMINDER_CONFIG = "needToRemindAboutDisablingLeaguesTasks";
 
     @ConfigSection(
@@ -22,7 +22,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceLevelUp",
             name = "Level ups",
-            description = "Should C Engineer announce when you gain a level in a skill?",
+            description = "Should Tourettes Guy announce when you gain a level in a skill?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 1
     )
@@ -33,7 +33,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceLevelUpIncludesVirtual",
             name = "Include virtual level ups",
-            description = "Should C Engineer announce when you gain a virtual (>99) level in a skill?",
+            description = "Should Tourettes Guy announce when you gain a virtual (>99) level in a skill?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 2
     )
@@ -44,7 +44,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceQuestCompletion",
             name = "Quest completions",
-            description = "Should C Engineer announce when you complete a quest?",
+            description = "Should Tourettes Guy announce when you complete a quest?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 3
     )
@@ -55,7 +55,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceCollectionLog",
             name = "New collection log entry",
-            description = "Should C Engineer announce when you fill in a new slot in your collection log? This one relies on you having chat messages (included with the popup option) enabled in game settings!",
+            description = "Should Tourettes Guy announce when you fill in a new slot in your collection log? This one relies on you having chat messages (included with the popup option) enabled in game settings!",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 4
     )
@@ -66,7 +66,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceAchievementDiary",
             name = "Completed achievement diaries",
-            description = "Should C Engineer announce when you complete a new achievement diary?",
+            description = "Should Tourettes Guy announce when you complete a new achievement diary?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 5
     )
@@ -77,7 +77,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceCombatAchievement",
             name = "Completed combat achievement tasks",
-            description = "Should C Engineer announce when you complete a new combat achievement task?",
+            description = "Should Tourettes Guy announce when you complete a new combat achievement task?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 6
     )
@@ -88,7 +88,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceSlayerTasks",
             name = "Completed Slayer Tasks",
-            description = "Should C Engineer announce when you complete a slayer task?",
+            description = "Should Tourettes Guy announce when you complete a slayer task?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 7
     )
@@ -99,7 +99,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceFarmingContracts",
             name = "Completed Farming Contracts",
-            description = "Should C Engineer announce when you complete a farming contract?",
+            description = "Should Tourettes Guy announce when you complete a farming contract?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 8
     )
@@ -110,7 +110,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceHunterRumours",
             name = "Completed Hunter Rumours",
-            description = "Should C Engineer announce when you receive the required creature part for a hunter rumour?",
+            description = "Should Tourettes Guy announce when you receive the required creature part for a hunter rumour?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 9
     )
@@ -121,7 +121,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceLeaguesTasks",
             name = "Completed Leagues Tasks",
-            description = "Should C Engineer announce when you complete a leagues task?",
+            description = "Should Tourettes Guy announce when you complete a leagues task?",
             section = SECTION_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 10
     )
@@ -150,7 +150,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceDeath",
             name = "When you die",
-            description = "Should C Engineer relive his PvP HCIM death when you die?",
+            description = "Should Tourettes Guy relive his PvP HCIM death when you die?",
             section = SECTION_NON_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 21
     )
@@ -161,7 +161,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceNonTrouverInfernal",
             name = "Non-locked infernal in wildy (once per plugin session)",
-            description = "Should C Engineer warn you when you enter the wilderness (only once per plugin session) with an infernal cape that has not been locked with a trouver parchment?",
+            description = "Should Tourettes Guy warn you when you enter the wilderness (only once per plugin session) with an infernal cape that has not been locked with a trouver parchment?",
             section = SECTION_NON_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 22
     )
@@ -172,7 +172,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceGrubbyKeyDrop",
             name = "Announce Grubby Key Drop",
-            description = "Should C Engineer announce when you receive a grubby key?",
+            description = "Should Tourettes Guy announce when you receive a grubby key?",
             section = SECTION_NON_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 23
     )
@@ -183,7 +183,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceLarransKeyDrop",
             name = "Announce Larran's Key Drop",
-            description = "Should C Engineer announce when you receive a Larran's key?",
+            description = "Should Tourettes Guy announce when you receive a Larran's key?",
             section = SECTION_NON_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 24
     )
@@ -194,7 +194,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "announceBrimstoneKeyDrop",
             name = "Announce Brimstone Key Drop",
-            description = "Should C Engineer announce when you receive a brimstone key?",
+            description = "Should Tourettes Guy announce when you receive a brimstone key?",
             section = SECTION_NON_ACHIEVEMENT_ANNOUNCEMENTS,
             position = 25
     )
@@ -212,7 +212,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "showChatMessages",
             name = "Show fake public chat message (only you will see it)",
-            description = "Should C Engineer announce your achievements in game chat as well as audibly?",
+            description = "Should Tourettes Guy announce your achievements in game chat as well as audibly?",
             section = SECTION_GENERAL_ANNOUNCEMENT_SETTINGS,
             position = 41
     )
@@ -246,7 +246,7 @@ public interface CEngineerCompletedConfig extends Config {
     @ConfigItem(
             keyName = "easterEggs",
             name = "Easter eggs",
-            description = "Should C Engineer comment on your gameplay? And maybe do a little trolling?",
+            description = "Should Tourettes Guy comment on your gameplay? And maybe do a little trolling?",
             section = SECTION_EASTER_EGGS_AND_STREAMERS,
             position = 61
     )
@@ -266,13 +266,13 @@ public interface CEngineerCompletedConfig extends Config {
     }
 
     @ConfigItem(
-            keyName = "muteSnowballsIfCEngineerIsNear",
-            name = "Stealthy snowballs when C Engineer is nearby",
-            description = "Mute snowball sound effects if C Engineer is nearby to allow for stealthier trolling",
+            keyName = "muteSnowballsIfTourettesGuyIsNear",
+            name = "Stealthy snowballs when Tourettes Guy is nearby",
+            description = "Mute snowball sound effects if Tourettes Guy is nearby to allow for stealthier trolling",
             section = SECTION_EASTER_EGGS_AND_STREAMERS,
             position = 63
     )
-    default boolean muteSnowballsIfCEngineerIsNear() {
+    default boolean muteSnowballsIfTourettesGuyIsNear() {
         return true;
     }
 

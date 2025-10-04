@@ -1,6 +1,6 @@
 package com.github.schneeple.player;
 
-import com.github.schneeple.CEngineerCompletedConfig;
+import com.github.schneeple.TourettesGuyCompletedConfig;
 import net.runelite.api.Actor;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
@@ -25,8 +25,8 @@ import java.util.List;
 import static net.runelite.api.PlayerComposition.ITEM_OFFSET;
 
 @Singleton
-public class CEngineerPlayer {
-    public static final String RSN = "C Engineer";
+public class TourettesGuyPlayer {
+    public static final String RSN = "Tourettes Guy";
 
     private static final int FIGHT_INTERACT_OR_DAMAGE_COOLDOWN = 8;
 
@@ -38,13 +38,13 @@ public class CEngineerPlayer {
     private Client client;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
-    private CEngineerChatTrolls cEngineerChatTrolls;
+    private TourettesGuyChatTrolls TourettesGuyChatTrolls;
 
     private Player player = null;
-    private int lastTickOfFightIncludingCEngi = -1;
+    private int lastTickOfFightIncludingTourettesGuy = -1;
 
     @Subscribe
     public void onPlayerSpawned(PlayerSpawned playerSpawned) {
@@ -72,7 +72,7 @@ public class CEngineerPlayer {
                 !Text.standardize(RSN).equals(Text.standardize(chatMessage.getName())))
             return;
 
-        cEngineerChatTrolls.runTriggers(chatMessage);
+        TourettesGuyChatTrolls.runTriggers(chatMessage);
     }
 
     @Subscribe
@@ -81,7 +81,7 @@ public class CEngineerPlayer {
             return;
 
         if (actorEquals(interactingChanged.getSource()) && interactingChanged.getTarget() == client.getLocalPlayer()) {
-            lastTickOfFightIncludingCEngi = client.getTickCount();
+            lastTickOfFightIncludingTourettesGuy = client.getTickCount();
         }
     }
 
@@ -101,13 +101,13 @@ public class CEngineerPlayer {
                 || hitType == HitsplatID.POISON
                 || hitType == HitsplatID.VENOM;
         if (isRelevantHitType && wasFightingMeRecently()) {
-            // We want to keep tracking even if the hitsplats aren't from C anymore so we can still play the sound for a kill C contributed to
-            lastTickOfFightIncludingCEngi = client.getTickCount();
+            // We want to keep tracking even if the hitsplats aren't from Tourettes Guy anymore so we can still play the sound for a kill he contributed to
+            lastTickOfFightIncludingTourettesGuy = client.getTickCount();
         }
     }
 
     public boolean wasFightingMeRecently() {
-        return client.getTickCount() - lastTickOfFightIncludingCEngi <= FIGHT_INTERACT_OR_DAMAGE_COOLDOWN;
+        return client.getTickCount() - lastTickOfFightIncludingTourettesGuy <= FIGHT_INTERACT_OR_DAMAGE_COOLDOWN;
     }
 
     public boolean isOutOfRenderDistance() {
@@ -144,8 +144,8 @@ public class CEngineerPlayer {
         if (isOutOfRenderDistance())
             return false;
 
-        Actor cEngineerInteractTarget = player.getInteracting();
-        return cEngineerInteractTarget == actor;
+        Actor tourettesGuyInteractTarget = player.getInteracting();
+        return tourettesGuyInteractTarget == actor;
     }
 
     public boolean actorEquals(Actor other) {
@@ -153,21 +153,21 @@ public class CEngineerPlayer {
     }
 
     public boolean couldHaveThrownProjectileFrom(Projectile projectile) {
-        WorldPoint cEngineerWP = player.getWorldLocation();
-        WorldPoint projectileWP = WorldPoint.fromLocal(player.getWorldView(), projectile.getX1(), projectile.getY1(), cEngineerWP.getPlane());
+        WorldPoint tourettesGuyWP = player.getWorldLocation();
+        WorldPoint projectileWP = WorldPoint.fromLocal(player.getWorldView(), projectile.getX1(), projectile.getY1(), tourettesGuyWP.getPlane());
 
-        // check projectile is *roughly* from C's tile, while allowing for drive-by/moving while the projectile spawns
-        return cEngineerWP.distanceTo2D(projectileWP) <= 2;
+        // check projectile is *roughly* from Tourettes Guy's tile, while allowing for drive-by/moving while the projectile spawns
+        return tourettesGuyWP.distanceTo2D(projectileWP) <= 2;
     }
 
     public int tilesFrom(Actor actor) {
         if (actor == null || player == null)
             return Integer.MAX_VALUE;
 
-        WorldPoint cEngineerWP = player.getWorldLocation();
+        WorldPoint tourettesGuyWP = player.getWorldLocation();
         WorldPoint actorWP = actor.getWorldLocation();
 
-        return cEngineerWP.distanceTo2D(actorWP);
+        return tourettesGuyWP.distanceTo2D(actorWP);
     }
 
     public void sendChatIfEnabled(String message) {

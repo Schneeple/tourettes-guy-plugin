@@ -1,7 +1,7 @@
 package com.github.schneeple.announce;
 
-import com.github.schneeple.CEngineerCompletedConfig;
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.TourettesGuyCompletedConfig;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.player.LoggedInState;
 import com.github.schneeple.sound.Sound;
 import com.github.schneeple.sound.SoundEngine;
@@ -85,7 +85,7 @@ public class AnnouncementTriggers {
     private ScheduledExecutorService executor;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private ConfigManager configManager;
@@ -94,7 +94,7 @@ public class AnnouncementTriggers {
     private SoundEngine soundEngine;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     @Inject
     private LoggedInState loggedInState;
@@ -165,7 +165,7 @@ public class AnnouncementTriggers {
 
         // If we get here, 'skill' was leveled up!
         if (config.announceLevelUp()) {
-            cEngineer.sendChatIfEnabled("Level up: completed.");
+            tourettesGuy.sendChatIfEnabled("Level up: completed.");
             soundEngine.playClip(Sound.LEVEL_UP, executor);
         }
     }
@@ -192,7 +192,7 @@ public class AnnouncementTriggers {
             oldAchievementDiaries.put(diary, newValue);
             if (config.announceAchievementDiary() && previousValue != -1 && previousValue != newValue && isAchievementDiaryCompleted(diary, newValue)) {
                 // value was not unknown (we know the previous value), value has changed, and value indicates diary is completed now
-                cEngineer.sendChatIfEnabled("Achievement diary: completed.");
+                tourettesGuy.sendChatIfEnabled("Achievement diary: completed.");
                 soundEngine.playClip(Sound.ACHIEVEMENT_DIARY, executor);
             }
         }
@@ -211,11 +211,11 @@ public class AnnouncementTriggers {
     }
 
     private void sendHighlightedMessageForColLogNotifSetting() {
-        sendHighlightedMessage("Please enable \"Collection log - New addition notification\" in your game settings for C Engineer to know when to announce it! (The chat message one, pop-up doesn't matter)");
+        sendHighlightedMessage("Please enable \"Collection log - New addition notification\" in your game settings for Tourettes Guy to know when to announce it! (The chat message one, pop-up doesn't matter)");
     }
 
     private void sendHighlightedMessageForLeaguesTaskSetting() {
-        sendHighlightedMessage("C Engineer announcing leagues tasks might get spammy, but remember you can disable these announcements while keeping the others active in the plugin settings!");
+        sendHighlightedMessage("Tourettes Guy announcing leagues tasks might get spammy, but remember you can disable these announcements while keeping the others active in the plugin settings!");
     }
 
     private void sendHighlightedMessage(String message) {
@@ -243,7 +243,7 @@ public class AnnouncementTriggers {
 
     @Subscribe
     public void onConfigChanged(ConfigChanged event) {
-        if (CEngineerCompletedConfig.GROUP.equals(event.getGroup())) {
+        if (TourettesGuyCompletedConfig.GROUP.equals(event.getGroup())) {
 
 			if ("announcementVolume".equals(event.getKey()) || "selectAnySoundToTestPlayIt".equals(event.getKey())) {
 				soundEngine.playClip(config.selectAnySoundToTestPlayIt(), executor);
@@ -260,28 +260,28 @@ public class AnnouncementTriggers {
             return;
 
         if (config.announceCollectionLog() && COLLECTION_LOG_ITEM_REGEX.matcher(chatMessage.getMessage()).matches()) {
-            cEngineer.sendChatIfEnabled("Collection log slot: completed.");
+            tourettesGuy.sendChatIfEnabled("Collection log slot: completed.");
             soundEngine.playClip(Sound.COLLECTION_LOG_SLOT, executor);
 
         } else if (config.announceQuestCompletion() && QUEST_REGEX.matcher(chatMessage.getMessage()).matches()) {
-            cEngineer.sendChatIfEnabled("Quest: completed.");
+            tourettesGuy.sendChatIfEnabled("Quest: completed.");
             soundEngine.playClip(Sound.QUEST, executor);
 
         } else if (config.announceCombatAchievement() && COMBAT_TASK_REGEX.matcher(chatMessage.getMessage()).matches()) {
-            cEngineer.sendChatIfEnabled("Combat task: completed.");
+            tourettesGuy.sendChatIfEnabled("Combat task: completed.");
             soundEngine.playClip(Sound.COMBAT_TASK, executor);
 
         } else if (config.announceLeaguesTasks() && LEAGUES_TASK_REGEX.matcher(chatMessage.getMessage()).matches()) {
-            cEngineer.sendChatIfEnabled("Leagues task: completed.");
+            tourettesGuy.sendChatIfEnabled("Leagues task: completed.");
             soundEngine.playClip(Sound.LEAGUES_TASK, executor);
 
             if (config.needToRemindAboutDisablingLeaguesTasks()) {
-                configManager.setConfiguration(CEngineerCompletedConfig.GROUP, CEngineerCompletedConfig.LEAGUES_TASK_HIDDEN_REMINDER_CONFIG, false);
+                configManager.setConfiguration(TourettesGuyCompletedConfig.GROUP, TourettesGuyCompletedConfig.LEAGUES_TASK_HIDDEN_REMINDER_CONFIG, false);
                 sendHighlightedMessageForLeaguesTaskSetting();
             }
 
         } else if (config.announceSlayerTasks() && SLAYER_TASK_REGEX.matcher(Text.removeTags(chatMessage.getMessage())).matches()) {
-            cEngineer.sendChatIfEnabled("Slayer task: completed.");
+            tourettesGuy.sendChatIfEnabled("Slayer task: completed.");
             soundEngine.playClip(Sound.SLAYER_TASK, executor);
             return;
         }
@@ -290,15 +290,15 @@ public class AnnouncementTriggers {
         if (config.announceHunterRumours() && (
                 HUNTER_RUMOUR_MESSAGE.equals(standardizedMessage) || HUNTER_RUMOUR_FULL_INV_MESSAGE.equals(standardizedMessage)
         )) {
-            cEngineer.sendChatIfEnabled("Hunter Rumour: completed.");
+            tourettesGuy.sendChatIfEnabled("Hunter Rumour: completed.");
             soundEngine.playClip(Sound.HUNTER_RUMOUR, executor);
 
         } else if (config.announceHunterRumours() && HUNTER_RUMOUR_FULL_INV_DISCARDED_MESSAGE.equals(standardizedMessage)) {
-            cEngineer.sendChatIfEnabled("Hunter Rumour: not completed! You need more inventory space!");
+            tourettesGuy.sendChatIfEnabled("Hunter Rumour: not completed! You need more inventory space!");
             soundEngine.playClip(Sound.HUNTER_RUMOUR_NOT_COMPLETED, executor);
 
         } else if (config.announceFarmingContracts() && FARMING_CONTRACT_MESSAGE.equals(standardizedMessage)) {
-            cEngineer.sendChatIfEnabled("Farming Contract: completed.");
+            tourettesGuy.sendChatIfEnabled("Farming Contract: completed.");
             soundEngine.playClip(Sound.FARMING_CONTRACT, executor);
         }
     }
@@ -310,15 +310,15 @@ public class AnnouncementTriggers {
             int itemId = itemStack.getId();
 
             if (itemId == ItemID.HOSDUN_GRUBBY_KEY && config.announceGrubbyKeyDrop()) {
-                cEngineer.sendChatIfEnabled("Another grubby key.");
+                tourettesGuy.sendChatIfEnabled("Another grubby key.");
                 soundEngine.playClip(Sound.GRUBBY_KEY, executor);
 
             } else if (itemId == ItemID.SLAYER_WILDERNESS_KEY && config.announceLarransKeyDrop()) {
-                cEngineer.sendChatIfEnabled("Another Larran's key.");
+                tourettesGuy.sendChatIfEnabled("Another Larran's key.");
                 soundEngine.playClip(Sound.LARRANS_KEY, executor);
 
             } else if (itemId == ItemID.KONAR_KEY && config.announceBrimstoneKeyDrop()) {
-                cEngineer.sendChatIfEnabled("Another brimstone key.");
+                tourettesGuy.sendChatIfEnabled("Another brimstone key.");
                 soundEngine.playClip(Sound.BRIMSTONE_KEY, executor);
             }
         }
@@ -330,24 +330,24 @@ public class AnnouncementTriggers {
             return;
 
         // Death easter egg and normal announcement kept together to make it one or the other, never both
-        if (config.easterEggs() && cEngineer.wasFightingMeRecently()) {
-            diedToCEngineer();
+        if (config.easterEggs() && tourettesGuy.wasFightingMeRecently()) {
+            diedToTourettesGuy();
         } else if (config.announceDeath()) {
             diedToAnythingElse();
         }
     }
 
-    private void diedToCEngineer() {
+    private void diedToTourettesGuy() {
         if (random.nextBoolean()) {
-            cEngineer.sendChatIfEnabled("Dying to " + CEngineerPlayer.RSN + ": completed.");
+            tourettesGuy.sendChatIfEnabled("Dying to " + TourettesGuyPlayer.RSN + ": completed.");
         } else {
-            cEngineer.sendChatIfEnabled("Sit");
+            tourettesGuy.sendChatIfEnabled("Sit");
         }
-        soundEngine.playClip(Sound.DEATH_TO_C_ENGINEER, executor);
+        soundEngine.playClip(Sound.DEATH_TO_TOURETTES_GUY, executor);
     }
 
     private void diedToAnythingElse() {
-        cEngineer.sendChatIfEnabled("Dying on my HCIM: completed.");
+        tourettesGuy.sendChatIfEnabled("Dying on my HCIM: completed.");
         soundEngine.playClip(Sound.DEATH, executor);
     }
 }

@@ -2,7 +2,7 @@ package com.github.schneeple;
 
 import com.github.schneeple.announce.AnnouncementTriggers;
 import com.github.schneeple.eastereggs.EasterEggTriggers;
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.player.LoggedInState;
 import com.github.schneeple.qol.QualityOfLifeTriggers;
 import com.github.schneeple.sound.SoundFileManager;
@@ -24,12 +24,12 @@ import java.util.concurrent.ScheduledExecutorService;
 
 @Slf4j
 @PluginDescriptor(
-        name = "C Engineer: Completed",
-        description = "C Engineer announces when you complete an achievement",
-        tags = {"c engineer", "stats", "levels", "quests", "diary", "announce"}
+        name = "Tourettes Guy: Completed",
+        description = "Tourettes Guy announces when you complete an achievement",
+        tags = {"Tourettes Guy", "stats", "levels", "quests", "diary", "announce"}
 )
 
-public class CEngineerCompletedPlugin extends Plugin {
+public class TourettesGuyCompletedPlugin extends Plugin {
     @Inject
     private Client client;
 
@@ -38,7 +38,7 @@ public class CEngineerCompletedPlugin extends Plugin {
     private ClientThread clientThread;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private ScheduledExecutorService executor;
@@ -50,7 +50,7 @@ public class CEngineerCompletedPlugin extends Plugin {
     private EventBus eventBus;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     @Inject
     private AnnouncementTriggers announcementTriggers;
@@ -69,7 +69,7 @@ public class CEngineerCompletedPlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        eventBus.register(cEngineer);
+        eventBus.register(tourettesGuy);
         eventBus.register(announcementTriggers);
         eventBus.register(easterEggTriggers);
         eventBus.register(trollTriggers);
@@ -83,7 +83,7 @@ public class CEngineerCompletedPlugin extends Plugin {
 
     @Override
     protected void shutDown() throws Exception {
-        eventBus.unregister(cEngineer);
+        eventBus.unregister(tourettesGuy);
         eventBus.unregister(announcementTriggers);
         eventBus.unregister(easterEggTriggers);
         eventBus.unregister(trollTriggers);
@@ -94,7 +94,7 @@ public class CEngineerCompletedPlugin extends Plugin {
     }
 
     @Provides
-    CEngineerCompletedConfig provideConfig(ConfigManager configManager) {
-        return configManager.getConfig(CEngineerCompletedConfig.class);
+    TourettesGuyCompletedConfig provideConfig(ConfigManager configManager) {
+        return configManager.getConfig(TourettesGuyCompletedConfig.class);
     }
 }

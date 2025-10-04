@@ -1,6 +1,6 @@
 package com.github.schneeple.sound;
 
-import com.github.schneeple.CEngineerCompletedConfig;
+import com.github.schneeple.TourettesGuyCompletedConfig;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.audio.AudioPlayer;
 
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class SoundEngine {
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private AudioPlayer audioPlayer;
@@ -38,7 +38,7 @@ public class SoundEngine {
         try {
             audioPlayer.play(SoundFileManager.getSoundFile(sound), gain);
         } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
-            log.warn("Failed to load C Engineer sound {}", sound, e);
+            log.warn("Failed to load Tourettes Guy sound {}", sound, e);
         }
     }
 }

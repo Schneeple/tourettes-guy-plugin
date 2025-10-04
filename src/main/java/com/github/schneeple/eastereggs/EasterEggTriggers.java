@@ -1,7 +1,7 @@
 package com.github.schneeple.eastereggs;
 
-import com.github.schneeple.CEngineerCompletedConfig;
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.TourettesGuyCompletedConfig;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.player.LoggedInState;
 import com.github.schneeple.sound.Sound;
 import com.github.schneeple.sound.SoundEngine;
@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 
 /**
  * Easter eggs that normal accounts can trigger in normal gameplay.
- * These are separate to the trolls that C Engineer can trigger.
+ * These are separate to the trolls that Tourettes Guy can trigger.
  */
 public class EasterEggTriggers {
     private static final int ID_OBJECT_LUMCASTLE_GROUND_LEVEL_STAIRCASE = 16671;
@@ -43,7 +43,7 @@ public class EasterEggTriggers {
     private Client client;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private ScheduledExecutorService executor;
@@ -52,7 +52,7 @@ public class EasterEggTriggers {
     private SoundEngine soundEngine;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     @Inject
     private LoggedInState loggedInState;
@@ -71,7 +71,7 @@ public class EasterEggTriggers {
             WorldPoint wp = WorldPoint.fromLocal(client, lp);
             if (wp.getX() == WORLD_POINT_LUMCASTLE_STAIRCASE_NORTH_X && wp.getY() == WORLD_POINT_LUMCASTLE_STAIRCASE_NORTH_Y) {
                 // Now we know this is the northern staircase only in Lumbridge castle ground floor
-                cEngineer.sendChatIfEnabled("Please do not use the northern staircase, use the southern one instead.");
+                tourettesGuy.sendChatIfEnabled("Please do not use the northern staircase, use the southern one instead.");
                 soundEngine.playClip(Sound.EASTER_EGG_STAIRCASE, executor);
             }
         }
@@ -92,7 +92,7 @@ public class EasterEggTriggers {
                 offer.getState() == GrandExchangeOfferState.SELLING &&
                 // check ticks to avoid double detection because we get sent each offer twice
                 (lastGEOfferTick == -1 || client.getTickCount() - lastGEOfferTick > 4)) {
-            cEngineer.sendChatIfEnabled("Are you stupid? Did you just try to sell a twisted bow for 1gp?");
+            tourettesGuy.sendChatIfEnabled("Are you stupid? Did you just try to sell a twisted bow for 1gp?");
             soundEngine.playClip(Sound.EASTER_EGG_TWISTED_BOW_1GP, executor);
         }
 
@@ -109,7 +109,7 @@ public class EasterEggTriggers {
             return;
 
         if (STRAY_DOG_GIVEN_BONES_REGEX.matcher(chatMessage.getMessage()).matches()) {
-            cEngineer.sendChatIfEnabled("I love you.");
+            tourettesGuy.sendChatIfEnabled("I love you.");
             soundEngine.playClip(Sound.EASTER_EGG_STRAYDOG_BONE, executor);
         } else {
             checkForZulrahPB(chatMessage);
@@ -126,7 +126,7 @@ public class EasterEggTriggers {
         Matcher pbMatcher = NEW_PB_PATTERN.matcher(chatMessage.getMessage());
         if (pbMatcher.find() && client.getTickCount() - lastZulrahKillTick <= ZULRAH_KILL_TO_PB_MESSAGE_LENIENCY) {
             // Player just got pb, and last zulrah kill was within a tick from now
-            cEngineer.sendChatIfEnabled("Gz on the new personal best! Last time I got a pb here, I died on my HCIM!");
+            tourettesGuy.sendChatIfEnabled("Gz on the new personal best! Last time I got a pb here, I died on my HCIM!");
             soundEngine.playClip(Sound.EASTER_EGG_ZULRAH_PB, executor);
         }
     }

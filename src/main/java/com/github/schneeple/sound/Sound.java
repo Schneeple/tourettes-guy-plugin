@@ -19,7 +19,7 @@ public enum Sound {
     LARRANS_KEY("larrans_key_r1.wav"),
     BRIMSTONE_KEY("brimstone_key_r1.wav"),
     DEATH("DyingHCIMCompleted_r1.wav"),
-    DEATH_TO_C_ENGINEER("Sit_r1.wav"),
+    DEATH_TO_TOURETTES_GUY("Sit_r1.wav"),
 
     QOL_NON_PARCH_INFERNAL("Parched_Infernal_r1.wav"),
 

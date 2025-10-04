@@ -1,8 +1,8 @@
 package com.github.schneeple.trolls;
 
-import com.github.schneeple.CEngineerCompletedConfig;
+import com.github.schneeple.TourettesGuyCompletedConfig;
 import com.github.schneeple.animation.AnimationTriggers;
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.projectile.ProjectileID;
 import com.github.schneeple.sound.Sound;
 import com.github.schneeple.sound.SoundEngine;
@@ -30,11 +30,11 @@ import java.time.Duration;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Pattern;
 
-import static com.github.m0bilebtw.projectile.ProjectileSoundID.SNOWBALL_SOUND_IDS;
+import static com.github.schneeple.projectile.ProjectileSoundID.SNOWBALL_SOUND_IDS;
 
 public class TrollTriggers {
-    private static final Pattern STAT_SPY_REGEX = Pattern.compile(Text.standardize(CEngineerPlayer.RSN + " is reading your skill stats!"));
-    private static final Pattern ESCAPE_CRYSTAL_REGEX = Pattern.compile(Text.standardize(CEngineerPlayer.RSN + " activated your crystal\\."));
+    private static final Pattern STAT_SPY_REGEX = Pattern.compile(Text.standardize(TourettesGuyPlayer.RSN + " is reading your skill stats!"));
+    private static final Pattern ESCAPE_CRYSTAL_REGEX = Pattern.compile(Text.standardize(TourettesGuyPlayer.RSN + " activated your crystal\\."));
     private static final Pattern TOB_GREEN_BALL_BOUNCE_REGEX = Pattern.compile(Text.standardize("<col=0a721f>A powerful projectile bounces into your direction\\.\\.\\.</col>"));
 
     private static final int SNOWBALL_COOLDOWN_TICKS = 50;
@@ -47,7 +47,7 @@ public class TrollTriggers {
     private Client client;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private ScheduledExecutorService executor;
@@ -56,7 +56,7 @@ public class TrollTriggers {
     private SoundEngine soundEngine;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     @Inject
     private AnimationTriggers animationTriggers;
@@ -78,7 +78,7 @@ public class TrollTriggers {
         } else if (ESCAPE_CRYSTAL_REGEX.matcher(standardisedMessage).matches()) {
             soundEngine.playClip(Sound.ESCAPE_CRYSTAL, executor);
 
-        } else if (cEngineer.isFollowingMe() && TOB_GREEN_BALL_BOUNCE_REGEX.matcher(standardisedMessage).matches()) {
+        } else if (tourettesGuy.isFollowingMe() && TOB_GREEN_BALL_BOUNCE_REGEX.matcher(standardisedMessage).matches()) {
             soundEngine.playClip(Sound.TOB_GREEN_BALL, executor);
         }
     }
@@ -88,7 +88,7 @@ public class TrollTriggers {
         if (!config.easterEggs())
             return;
 
-        if (!cEngineer.isWearingAttackTrollRequirements())
+        if (!tourettesGuy.isWearingAttackTrollRequirements())
             return;
 
         iceBarrageTroll(graphicChanged.getActor());
@@ -105,18 +105,18 @@ public class TrollTriggers {
             return;
         }
 
-        if (cEngineer.isOutOfRenderDistance())
+        if (tourettesGuy.isOutOfRenderDistance())
             return;
 
         Actor actor = animationChanged.getActor();
-        if (!cEngineer.actorEquals(actor))
+        if (!tourettesGuy.actorEquals(actor))
             return;
 
         int actorAnimationId = actor.getAnimation();
         if (actorAnimationId == -1)
             return;
 
-        animationTriggers.runTriggersForCEngiAnimation(actorAnimationId);
+        animationTriggers.runTriggersForTourettesGuyAnimation(actorAnimationId);
     }
 
     @Subscribe
@@ -135,7 +135,7 @@ public class TrollTriggers {
 
     @Subscribe
     public void onProjectileMoved(ProjectileMoved projectileMoved) {
-        if (cEngineer.isOutOfRenderDistance())
+        if (tourettesGuy.isOutOfRenderDistance())
             return;
 
         if (!config.easterEggs())
@@ -157,7 +157,7 @@ public class TrollTriggers {
         if (!myself.equals(projectileInteracting))
             return;
 
-        if (cEngineer.couldHaveThrownProjectileFrom(projectile)) {
+        if (tourettesGuy.couldHaveThrownProjectileFrom(projectile)) {
             lastSnowballTriggerTick = currentTick;
             playSoundFromSnowball();
         }
@@ -171,7 +171,7 @@ public class TrollTriggers {
         }
 
         Sound sound = pickSnowballSoundBasedOnEquipment();
-        if (cEngineer.isWearing(ItemID.TRAIL_MAGE_AMULET)) {
+        if (tourettesGuy.isWearing(ItemID.TRAIL_MAGE_AMULET)) {
             soundEngine.playClip(sound, executor);
         } else {
             soundEngine.playClip(sound, executor, SNOWBALL_DELAY_SOUNDS);
@@ -179,26 +179,26 @@ public class TrollTriggers {
     }
 
     private Sound pickSnowballSoundBasedOnEquipment() {
-        if (cEngineer.isWearing(ItemID.BUCKET_HELM_GOLD))
+        if (tourettesGuy.isWearing(ItemID.BUCKET_HELM_GOLD))
             return Sound.SNOWBALL_EQUIPPING_BUCKET_HELM_G_OR_FUNNY_FEEL;
 
-        if (cEngineer.isWearing(ItemID.GIANT_BOOT))
+        if (tourettesGuy.isWearing(ItemID.GIANT_BOOT))
             return Sound.SNOWBALL_EQUIPPING_GIANT_BOOT;
 
-        if (cEngineer.isWearing(ItemID.WISE_SPECTACLES))
+        if (tourettesGuy.isWearing(ItemID.WISE_SPECTACLES))
             return Sound.SNOWBALL_EQUIPPING_SAGACIOUS_SPECTACLES;
 
-        if (cEngineer.isWearing(ItemID.TOA_AMASCUT_MASK))
+        if (tourettesGuy.isWearing(ItemID.TOA_AMASCUT_MASK))
             return Sound.SNOWBALL_EQUIPPING_MASK_OF_REBIRTH;
 
         return Sound.randomSnowballSoundNotFromEquippedItem();
     }
 
     private boolean shouldMuteSnowballs() {
-        if (cEngineer.isOutOfRenderDistance())
+        if (tourettesGuy.isOutOfRenderDistance())
             return false;
 
-        return config.muteSnowballsIfCEngineerIsNear();
+        return config.muteSnowballsIfTourettesGuyIsNear();
     }
 
     private void iceBarrageTroll(Actor actorFromGraphicChanged) {
@@ -208,9 +208,9 @@ public class TrollTriggers {
         NPC npc = (NPC) actorFromGraphicChanged;
         if (!npc.hasSpotAnim(SpotanimID.ICE_BARRAGE_IMPACT))
             return;
-        if (!cEngineer.isInteracting(npc))
+        if (!tourettesGuy.isInteracting(npc))
             return;
-        if (cEngineer.tilesFrom(client.getLocalPlayer()) > 10)
+        if (tourettesGuy.tilesFrom(client.getLocalPlayer()) > 10)
             return;
 
         soundEngine.playClip(Sound.ATTACK_TROLL_IB, executor);

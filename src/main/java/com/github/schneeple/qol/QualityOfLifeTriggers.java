@@ -1,7 +1,7 @@
 package com.github.schneeple.qol;
 
-import com.github.schneeple.CEngineerCompletedConfig;
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.TourettesGuyCompletedConfig;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.player.LoggedInState;
 import com.github.schneeple.sound.Sound;
 import com.github.schneeple.sound.SoundEngine;
@@ -26,7 +26,7 @@ public class QualityOfLifeTriggers {
     private Client client;
 
     @Inject
-    private CEngineerCompletedConfig config;
+    private TourettesGuyCompletedConfig config;
 
     @Inject
     private ScheduledExecutorService executor;
@@ -35,7 +35,7 @@ public class QualityOfLifeTriggers {
     private SoundEngine soundEngine;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     @Inject
     private LoggedInState loggedInState;
@@ -71,7 +71,7 @@ public class QualityOfLifeTriggers {
 
         if (warnForEquip || warnForInvent) {
             lastInfernalParchmentWarningTick = client.getTickCount();
-            cEngineer.sendChatIfEnabled("Your infernal cape is not parched!");
+            tourettesGuy.sendChatIfEnabled("Your infernal cape is not parched!");
             soundEngine.playClip(Sound.QOL_NON_PARCH_INFERNAL, executor);
         }
     }

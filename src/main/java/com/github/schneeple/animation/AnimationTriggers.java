@@ -1,6 +1,6 @@
 package com.github.schneeple.animation;
 
-import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.player.TourettesGuyPlayer;
 import com.github.schneeple.player.LocalPlayer;
 import com.github.schneeple.sound.Sound;
 import com.github.schneeple.sound.SoundEngine;
@@ -18,11 +18,11 @@ import java.util.Optional;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.github.m0bilebtw.animation.AnimationID.DIANGO_CLAWS;
-import static com.github.m0bilebtw.animation.AnimationID.GENERIC_CHEST_OPEN;
-import static com.github.m0bilebtw.animation.AnimationID.PREMIER_SHIELD;
-import static com.github.m0bilebtw.animation.AnimationID.SMOOTH_DANCE;
-import static com.github.m0bilebtw.animation.AnimationID.TRICK;
+import static com.github.schneeple.animation.AnimationID.DIANGO_CLAWS;
+import static com.github.schneeple.animation.AnimationID.GENERIC_CHEST_OPEN;
+import static com.github.schneeple.animation.AnimationID.PREMIER_SHIELD;
+import static com.github.schneeple.animation.AnimationID.SMOOTH_DANCE;
+import static com.github.schneeple.animation.AnimationID.TRICK;
 
 public class AnimationTriggers {
 
@@ -39,7 +39,7 @@ public class AnimationTriggers {
     private ChatMessageManager chatMessageManager;
 
     @Inject
-    private CEngineerPlayer cEngineer;
+    private TourettesGuyPlayer tourettesGuy;
 
     private static final WorldArea AKKHA_ROOM = new WorldArea(new WorldPoint(3671, 5398, 1), 29, 20);
     private static final WorldArea BABA_PUZZLE_ROOM = new WorldArea(new WorldPoint(3788, 5264, 0), 42, 31);
@@ -55,7 +55,7 @@ public class AnimationTriggers {
         if (animationId != GENERIC_CHEST_OPEN)
             return;
 
-        if (!cEngineer.isFollowingMe())
+        if (!tourettesGuy.isFollowingMe())
             return;
 
         WorldPoint currentLocation = WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation());
@@ -78,7 +78,7 @@ public class AnimationTriggers {
         soundEngine.playClip(Sound.SNOWBALL_EQUIPPING_BUCKET_HELM_G_OR_FUNNY_FEEL, executor);
     }
 
-    public void runTriggersForCEngiAnimation(int animationId) {
+    public void runTriggersForTourettesGuyAnimation(int animationId) {
         if (animationId == TRICK) {
             akkhaTroll();
         } else if (animationId == PREMIER_SHIELD) {
@@ -129,10 +129,10 @@ public class AnimationTriggers {
     }
 
     private void diangoClawsTroll() {
-        if (cEngineer.tilesFrom(client.getLocalPlayer()) > 10)
+        if (tourettesGuy.tilesFrom(client.getLocalPlayer()) > 10)
             return;
 
-        if (cEngineer.isWearingAttackTrollRequirements()) {
+        if (tourettesGuy.isWearingAttackTrollRequirements()) {
             soundEngine.playClip(Sound.ATTACK_TROLL_DC, executor);
         }
     }
