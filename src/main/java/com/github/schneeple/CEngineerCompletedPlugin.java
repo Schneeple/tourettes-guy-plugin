@@ -1,12 +1,12 @@
-package com.github.m0bilebtw;
+package com.github.schneeple;
 
-import com.github.m0bilebtw.announce.AnnouncementTriggers;
-import com.github.m0bilebtw.eastereggs.EasterEggTriggers;
-import com.github.m0bilebtw.player.CEngineerPlayer;
-import com.github.m0bilebtw.player.LoggedInState;
-import com.github.m0bilebtw.qol.QualityOfLifeTriggers;
-import com.github.m0bilebtw.sound.SoundFileManager;
-import com.github.m0bilebtw.trolls.TrollTriggers;
+import com.github.schneeple.announce.AnnouncementTriggers;
+import com.github.schneeple.eastereggs.EasterEggTriggers;
+import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.player.LoggedInState;
+import com.github.schneeple.qol.QualityOfLifeTriggers;
+import com.github.schneeple.sound.SoundFileManager;
+import com.github.schneeple.trolls.TrollTriggers;
 import com.google.inject.Provides;
 import lombok.AccessLevel;
 import lombok.Getter;

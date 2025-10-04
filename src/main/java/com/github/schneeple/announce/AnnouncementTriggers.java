@@ -1,10 +1,10 @@
-package com.github.m0bilebtw.announce;
+package com.github.schneeple.announce;
 
-import com.github.m0bilebtw.CEngineerCompletedConfig;
-import com.github.m0bilebtw.player.CEngineerPlayer;
-import com.github.m0bilebtw.player.LoggedInState;
-import com.github.m0bilebtw.sound.Sound;
-import com.github.m0bilebtw.sound.SoundEngine;
+import com.github.schneeple.CEngineerCompletedConfig;
+import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.player.LoggedInState;
+import com.github.schneeple.sound.Sound;
+import com.github.schneeple.sound.SoundEngine;
 import lombok.AccessLevel;
 import lombok.Getter;
 import net.runelite.api.ChatMessageType;

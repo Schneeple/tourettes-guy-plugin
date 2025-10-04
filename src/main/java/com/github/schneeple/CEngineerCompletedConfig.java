@@ -1,6 +1,6 @@
-package com.github.m0bilebtw;
+package com.github.schneeple;
 
-import com.github.m0bilebtw.sound.Sound;
+import com.github.schneeple.sound.Sound;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;

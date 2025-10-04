@@ -1,4 +1,4 @@
-package com.github.m0bilebtw.sound;
+package com.github.schneeple.sound;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.github.m0bilebtw.projectile;
+package com.github.schneeple.projectile;
 
 import java.util.Set;
 

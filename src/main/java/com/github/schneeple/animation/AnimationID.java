@@ -1,4 +1,4 @@
-package com.github.m0bilebtw.animation;
+package com.github.schneeple.animation;
 
 public class AnimationID {
     private AnimationID() {}

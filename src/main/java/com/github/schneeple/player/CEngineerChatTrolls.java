@@ -1,7 +1,7 @@
-package com.github.m0bilebtw.player;
+package com.github.schneeple.player;
 
-import com.github.m0bilebtw.sound.Sound;
-import com.github.m0bilebtw.sound.SoundEngine;
+import com.github.schneeple.sound.Sound;
+import com.github.schneeple.sound.SoundEngine;
 import net.runelite.api.Client;
 import net.runelite.api.events.ChatMessage;
 

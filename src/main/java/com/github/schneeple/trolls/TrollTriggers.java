@@ -1,11 +1,11 @@
-package com.github.m0bilebtw.trolls;
+package com.github.schneeple.trolls;
 
-import com.github.m0bilebtw.CEngineerCompletedConfig;
-import com.github.m0bilebtw.animation.AnimationTriggers;
-import com.github.m0bilebtw.player.CEngineerPlayer;
-import com.github.m0bilebtw.projectile.ProjectileID;
-import com.github.m0bilebtw.sound.Sound;
-import com.github.m0bilebtw.sound.SoundEngine;
+import com.github.schneeple.CEngineerCompletedConfig;
+import com.github.schneeple.animation.AnimationTriggers;
+import com.github.schneeple.player.CEngineerPlayer;
+import com.github.schneeple.projectile.ProjectileID;
+import com.github.schneeple.sound.Sound;
+import com.github.schneeple.sound.SoundEngine;
 import net.runelite.api.Actor;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;

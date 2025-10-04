@@ -1,6 +1,6 @@
-package com.github.m0bilebtw.player;
+package com.github.schneeple.player;
 
-import com.github.m0bilebtw.CEngineerCompletedConfig;
+import com.github.schneeple.CEngineerCompletedConfig;
 import net.runelite.api.Actor;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;

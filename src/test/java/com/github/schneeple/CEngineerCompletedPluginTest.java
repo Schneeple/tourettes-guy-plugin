@@ -1,4 +1,4 @@
-package com.github.m0bilebtw;
+package com.github.schneeple;
 
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;

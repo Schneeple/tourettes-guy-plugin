@@ -1,6 +1,6 @@
-package com.github.m0bilebtw.sound;
+package com.github.schneeple.sound;
 
-import com.github.m0bilebtw.CEngineerCompletedConfig;
+import com.github.schneeple.CEngineerCompletedConfig;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.audio.AudioPlayer;
 

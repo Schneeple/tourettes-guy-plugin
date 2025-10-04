@@ -1,4 +1,4 @@
-package com.github.m0bilebtw.sound;
+package com.github.schneeple.sound;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLite;
@@ -29,7 +29,7 @@ public class SoundFileManager {
     private static final String DELETE_WARNING_FILENAME = "_EXTRA_FILES_WILL_BE_DELETED_BUT_FOLDERS_WILL_REMAIN";
     private static final Path DELETE_WARNING_FILE = DOWNLOAD_DIR.resolve(DELETE_WARNING_FILENAME);
 
-    private static final HttpUrl RAW_GITHUB = HttpUrl.parse("https://raw.githubusercontent.com/m0bilebtw/c-engineer-completed/sounds");
+    private static final HttpUrl RAW_GITHUB = HttpUrl.parse("https://raw.githubusercontent.com/schneeple/tourettes-guy-plugin/sounds");
 
     public static File getSoundFile(Sound sound) {
         return DOWNLOAD_DIR.resolve(sound.getResourceName()).toFile();
